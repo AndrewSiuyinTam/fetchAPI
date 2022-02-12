@@ -6,8 +6,34 @@
 </head>
 <body>
   <img src="#">
+
+  <button id="fetch">fetch</button>
+  <input type ='text'class='inputValue' placeholder ='search for a GIF'id='search'value=''>
+  <input type = 'submit' placeholder="submit" value='search' id='submitForm'>
   <script>
-      const img = document.querySelector('img');
+      const fetchButton = document.getElementById('fetch');
+      const search = document.getElementById('submitForm');
+      const searchBar = document.getElementById('search');
+      
+      
+
+      search.addEventListener('click',() =>{
+        const inputValue = document.querySelector('inputValue');
+          console.log('hi');
+        const img = document.querySelector('img');
+      fetch('https://api.giphy.com/v1/gifs/translate?api_key=PETS9v7I1P6m6MNU8NK8REpGVGDW8mjR&s&s='+searchBar.value, {mode: 'cors'})
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(response) {
+      img.src = response.data.images.original.url;
+    })
+    ;
+      })
+
+
+      fetchButton.addEventListener('click',() => {
+        const img = document.querySelector('img');
       fetch('https://api.giphy.com/v1/gifs/translate?api_key=PETS9v7I1P6m6MNU8NK8REpGVGDW8mjR&s&s=basketball', {mode: 'cors'})
     .then(function(response) {
       return response.json();
@@ -16,6 +42,8 @@
       img.src = response.data.images.original.url;
     })
     ;
+      })
+      
   </script>
 </body>
 </html>
